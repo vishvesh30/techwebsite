@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block body %}
+    <h1>Welcome to Dashboard {{ author_data.author_fname }}</h1>
+    {% if message %}
+        <div class="alert alert-info">
+            <div class="panel-body">
+                {{ message }}
+            </div>
+        </div>
+
+    {% endif %}
+    <a type="button" class="btn" href="/author/updateinfo/">update info</a>
+    <a type="button" class="btn right" href="/author/logout/">Logout</a>
+    <a type="button" class="btn" href="/author/insertarticle/">insert article</a>
+    <h3>Here's List OF Your Articles</h3>
+    <br/>
+    {% for article in article_data %}
+        <div class="card ">
+            <div class="card-header">
+                <div><a href="/article/{{ article.pk }}/" class="text-dark " style="font-size:x-large">
+                    {{ article.article_title }}
+                </a>
+                        <a href="/author/updatearticle/{{ article.pk }}/" class="float-right" style="font-size: large">Update</a>
+                </div>
+                <br />
+                <span class="oi oi-clock float-left" title="date" aria-hidden="true"></span>
+                <div class="float-left ml-2 font-italic" style="font-size: small;">{{ article.article_date }}</div>
+
+            </div>
+        </div>
+        <br/>
+    {% endfor %}
+{% endblock %}

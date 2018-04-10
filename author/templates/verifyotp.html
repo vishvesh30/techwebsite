@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block body %}
+    {% if message %}
+    <div class = "alert alert-info">
+    <div class = "panel-body">
+        {{ message }}
+    </div>
+    </div>
+    {% endif %}
+    <h3>Enter otp form</h3><br />
+    <form role="form" method="post" action="/author/verifyotp/{{ author_data.pk }}/">
+     {% csrf_token %}
+        <div class="form-group">
+            <label class="label" for="otp">Enter OTP:-</label>
+            <input type="text" name="otp" id="otp" class="form-control">
+        </div>
+        <br/>
+
+        <input type="submit" class="submit">
+    </form>
+{% endblock %}

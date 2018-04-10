@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+    {% if message %}
+        <div class="alert alert-info">
+            <div class="panel-body">
+                {{ message }}
+            </div>
+        </div>
+
+    {% endif %}
+    <div class="card">
+        <img class="card-img img-thumbnail" style="height:150px;width: 150px "
+             src="/media/{{ author_data.author_img }}">
+        <div class="card-body">
+            <form role="form" method="post" action="/author/updateinfo/" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label class="label" for="fname">Firstname:-</label>
+                    <input type="text" name="fname" id="fname" value="{{ author_data.author_fname }}"
+                           class="form-control">
+                </div>
+                <br/>
+                <div class="form-group">
+                    <label class="label" for="lname">Lastname:-</label>
+                    <input type="text" name="lname" id="lname" value="{{ author_data.author_lname }}"
+                           class="form-control">
+                </div>
+                <br/>
+
+                <div class="form-group">
+                    <label class="label" for="email">Email:-</label>
+                    <input type="email" name="email" id="email" value="{{ author_data.author_email }}"
+                           class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label class="label" for="profilepic">Profile pic:-</label>
+                    <input type="file" name="img" id="img"
+                           class="form-control" />
+                </div>
+
+                <br/>
+                <input type="submit" class="submit">
+            </form>
+
+        </div>
+    </div>
+    <br/>
+{% endblock %}

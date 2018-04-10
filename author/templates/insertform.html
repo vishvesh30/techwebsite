@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block body %}
+    {% if message %}
+        <div class="alert alert-info">
+            <div class="panel-body">
+                {{ message }}
+            </div>
+        </div>
+    {% endif %}
+    <form role="form" method="post" action="/author/insertarticle/" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label class="label" for="title">Post Title:-</label>
+            <input type="text" name="title" id="title" class="form-control">
+        </div>
+        <br/>
+        {{ form | safe }}
+        <br/>
+        <div class="form-group">
+            <label for="category_list">Category:-</label>
+            <select class="form-control" name="categoryid" id="category_list">
+                {% for obj in  category_obj %}
+                    <option value="{{ obj.pk }}" name="{{ obj.category_name }}">{{ obj.category_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <br/>
+        <div class="form-group">
+                    <label class="label" for="article_image">Relevant image:-</label>
+                    <input type="file" name="article_image" id="article_image"
+                           class="form-control" />
+                </div>
+        <input type="submit" class="submit">
+    </form>
+
+{% endblock %}

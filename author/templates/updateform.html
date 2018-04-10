@@ -1,0 +1,70 @@
+{% extends 'authorbase.html' %}
+{% block body %}
+    {% if message %}
+    <div class = "alert alert-info">
+    <div class = "panel-body">
+        {{ message }}
+    </div>
+    </div>
+    {% endif %}
+    <form role="form" method="post" action="/author/updatearticle/{{ article_data.pk }}/" enctype="multipart/form-data">
+     {% csrf_token %}
+        <div class="form-group">
+            <label class="label" for="title">Post Title:-</label>
+            <input type="text" name="title" id="title" value="{{ article_data.article_title }}" class="form-control">
+        </div>
+        <br/>
+        <div class="form-group">
+            <label class="label" for="data">Post Text:-</label>
+              <textarea id="summernote" title="data" name="data" >{{ article_data.article_text }}</textarea>
+
+        </div>
+        <br/>
+        <div class="form-group">
+                    <label class="label" for="article_existing_image">Relevant image:-</label>
+                    <img src="/media/{{ article_data.article_image }}" name="article_existing_image" id="article_existing_image"
+                           class="img-responsive" height="360px" width="640px" />
+                </div>
+        <div class="form-group">
+            <label for="category_list">Category:-</label>
+            <select class="form-control" name="categoryid" id="category_list">
+                {% for obj in  category_obj %}
+                    {% if obj.pk == article_data.categoryid.pk %}
+                    <option value="{{ obj.pk }}" selected="selected" name="{{ obj.category_name }}">{{ obj.category_name }}</option>
+                    {% else %}
+                <option value="{{ obj.pk }}" name="{{ obj.category_name }}">{{ obj.category_name }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+                    <label class="label" for="article_image">Relevant image:-</label>
+                    <input type="file" name="article_image" id="article_image"
+                           class="form-control" />
+                </div>
+        <input type="submit" class="submit">
+    </form>
+  <script>
+    $(document).ready(function() {
+        $('#summernote').summernote({
+                  height: 500,
+            attachment_upload_to:'/media/',
+    'toolbar': [
+        ['style', ['style']],
+        ['font', ['bold', 'italic', 'underline', 'superscript', 'subscript',
+                  'strikethrough', 'clear']],
+        ['fontname', ['fontname']],
+        ['fontsize', ['fontsize']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['height', ['height']],
+        ['table', ['table']],
+        ['insert', ['link', 'picture', 'video', 'hr']],
+        ['view', ['fullscreen', 'codeview']],
+        ['help', ['help']],
+],
+        });
+        });
+
+  </script>
+{% endblock %}

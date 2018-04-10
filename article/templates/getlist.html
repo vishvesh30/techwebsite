@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block body %}
+    <h1> List of Articles:-</h1>
+    {% for obj in article_data %}
+        <div class="card">
+            <a href="/article/{{ obj.id }}/" class="text-dark">
+                <div class="card-header"><h2>{{ obj.article_title }}</h2></div>
+            </a>
+            <div class="card-group card-body font-weight-light " style="font-size:large;padding: .75rem 1.25rem">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="card-text"><span class="oi oi-person mt-1 mr-1" title="account" aria-hidden="true"></span> {{ obj.authorid.author_fname }} {{ obj.authorid.author_lname }}</div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class=" card-text"><span class="oi oi-clock mt-1 mr-1" title="date" aria-hidden="true"></span> {{ obj.article_date }}</div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="card-body"><a href="/article/{{ obj.id }}/" class="text-dark"><span
+                    class="oi oi-chevron-right"> </span> Read More </a></div>
+
+        </div>
+
+        <br/>
+    {% endfor %}
+{% endblock %}

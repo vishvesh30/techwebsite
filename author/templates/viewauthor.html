@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+    <div class="card">
+        <img class="card-img img-thumbnail" style="height:150px;width: 150px "  src="/static/author_imgs/{{ author_data.author_img }}">
+        <div class="card-header"><h2>{{ author_data.author_name }}</h2></div>
+        <div class="card-body">
+             <span class="oi oi-envelope-closed mt-1 mr-1 " title="email" aria-hidden="true"></span><span class="card-text">{{ author_data.author_email }}</span><br />
+             <span class="oi oi-clock mt-1 mr-1 " title="date" aria-hidden="true"></span><span class="card-text">{{ author_data.author_joined }}</span>
+        </div>
+    </div>
+    <br />
+    <h3>Articles Written</h3>
+    {% for obj in article_data %}
+        <div class="card">
+            <a href="/article/{{ obj.id }}/" class="text-dark">
+                <div class="card-header"><h2>{{ obj.article_title }}</h2></div>
+            </a>
+            <div class="card-group card-body font-weight-light " style="font-size:large;padding: .75rem 1.25rem">
+                <span class="oi oi-person mt-1 mr-1" title="account" aria-hidden="true"></span>
+                <div class="card-columns inline card-text">{{ obj.authorid.author_fname }} {{ obj.authorid.author_lname }}</div>
+                <span class="oi oi-clock mt-1 mr-1" title="date" aria-hidden="true"></span>
+                <div class="card-columns card-text">{{ obj.article_date }}</div>
+            </div>
+            <div class="card-body"><a href="/article/{{ obj.id }}/" class="text-dark"><span
+                    class="oi oi-chevron-right"> </span> Read More </a></div>
+
+        </div>
+
+        <br/>
+    {% endfor %}
+{% endblock %}

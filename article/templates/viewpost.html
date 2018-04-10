@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block head %}
+    <meta property="og:url" content="http://127.0.0.1:8000/article/{{ article_data.pk }}/"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="{{ article_data.article_title }}"/>
+    <meta property="og:description" content="Description of article"/>
+    <meta property="og:image" content="/media/{{ article_data.article_image }}"/>
+    <link rel="canonical" href="http://127.0.0.1:8000/article/{{ article_data.pk }}/"/>
+{% endblock %}
+{% block body %}
+    <div class="">
+
+        <hr color="black">
+        <h1 class="h1"> {{ article_data.article_title }}</h1>
+        <hr color="black">
+        <br/>
+        <span class="oi oi-person mt-1 mr-1" title="account" aria-hidden="true"></span>
+        <a href="/author/viewauthor/{{ article_data.authorid.pk }}/"><i
+                class="font-italic">{{ article_data.authorid.author_fname }} {{ article_data.authorid.author_lname }}</i></a>
+        <i class="float-right font-italic ">{{ article_data.article_date }}</i>
+        <span class="oi oi-clock mt-1 mr-1 float-right" title="date" aria-hidden="true"></span>
+
+        <hr color="grey">
+
+        <div class="">
+            <!-- Your share button code -->
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+            <div class="fb-share-button" data-href="http://127.0.0.1:8000/article/{{ article_data.pk }}/"
+                 data-layout="button" data-size="large" data-mobile-iframe="false"><a target="_blank"
+                                                                                      href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8000%2Farticle%2F{{ article_data.pk }}%2F&amp;src=sdkpreparse"
+                                                                                      class="fb-xfbml-parse-ignore">Share</a>
+            </div>
+            <div class="btn btn-sm">
+            <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
+               data-show-count="false"  data-size="large">Tweet</a>
+                <div class="g-plus" data-action="share" data-height="28"></div></div>
+            <a class="btn btn-sm btn-warning" href="mailto:?subject={{ article_data.article_title }}&body=http://127.0.0.1:8000/article/{{ article_data.pk }}/"><span class="oi oi-envelope-closed mr-2" title="date" aria-hidden="true"></span>Mail</a>
+        </div>
+        <img src="/media/{{ article_data.article_image }}" class="img-responsive" height="360px" width="640px">
+        <h4 class="h4 card-body">{{ article_data.article_text | safe }}</h4>
+
+    </div>
+{% endblock %}
