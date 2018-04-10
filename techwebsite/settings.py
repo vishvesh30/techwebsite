@@ -75,12 +75,13 @@ WSGI_APPLICATION = 'techwebsite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'djangostack',
-        'HOST': '/opt/bitnami/postgresql',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'techwebsite',
+        'USER': 'postgres',
+        'PASSWORD': '0qLJWEUlU0jg',
+        'HOST': 'localhost',
         'PORT': '5432',
-        'USER': 'bitnami',
-        'PASSWORD': '69378ef93a'
+
     }
 }
 SUMMERNOTE_CONFIG = {
