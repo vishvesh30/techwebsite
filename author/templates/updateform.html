@@ -16,8 +16,9 @@
         <br/>
         <div class="form-group">
             <label class="label" for="data">Post Text:-</label>
-              <textarea id="summernote" title="data" name="data" >{{ article_data.article_text }}</textarea>
-
+            {{ form | safe }}
+              <!--<textarea id="summernote" title="data" name="data" >{{ article_data.article_text }}</textarea>
+-->
         </div>
         <br/>
         <div class="form-group">
@@ -49,20 +50,6 @@
         $('#summernote').summernote({
                   height: 500,
             attachment_upload_to:'/media/',
-    'toolbar': [
-        ['style', ['style']],
-        ['font', ['bold', 'italic', 'underline', 'superscript', 'subscript',
-                  'strikethrough', 'clear']],
-        ['fontname', ['fontname']],
-        ['fontsize', ['fontsize']],
-        ['color', ['color']],
-        ['para', ['ul', 'ol', 'paragraph']],
-        ['height', ['height']],
-        ['table', ['table']],
-        ['insert', ['link', 'picture', 'video', 'hr']],
-        ['view', ['fullscreen', 'codeview']],
-        ['help', ['help']],
-],
         });
         });
 

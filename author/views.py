@@ -137,9 +137,10 @@ def update_article(request, article_id):
         category_obj = category_data.objects.all()
         article_obj = article_data.objects.get(pk=article_id)
         if article_obj.authorid_id == request.session['authorid']:
+
             if request.method == 'POST':
                 title = request.POST.get('title')
-                data = request.POST.get('data')
+                data = request.POST.get('article_text')
                 if request.FILES:
                     print(request.FILES)
                     myfile = request.FILES['article_image']
@@ -152,7 +153,12 @@ def update_article(request, article_id):
                 category_obj1 = category_data.objects.get(pk=request.POST.get('categoryid'))
                 article_obj.categoryid = category_obj1
                 article_obj.save()
+                data = {'article_text': article_obj.article_text,
+                        }
+                form = updatearticleForm(data)
+
                 args = {
+                    'form':form,
                     'article_data': article_obj,
                     'message': 'Article saved Successfully',
                     'category_obj': category_obj
@@ -160,7 +166,12 @@ def update_article(request, article_id):
                 return render(request, 'updateform.html', args)
 
             else:
+                data = {'article_text': article_obj.article_text,
+                        }
+                form = updatearticleForm(data)
+
                 args = {
+                    'form':form,
                     'category_obj': category_obj,
                     'article_data': article_obj
                 }

@@ -24,7 +24,8 @@ SECRET_KEY = '+)8r7*rm@qs78#fsdz3oc)xcs+tv2^dgwl5pkfhq#0*8y)2q8g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['35.195.181.129'
+ALLOWED_HOSTS = ['35.195.181.129',
+                 '127.0.0.1'
                  ]
 
 # Application definition
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'author',
     'article',
+    'home',
     'django_summernote',
 ]
 
@@ -76,18 +78,19 @@ WSGI_APPLICATION = 'techwebsite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'techwebsite',
-        'USER': 'postgres',
-        'PASSWORD': '0qLJWEUlU0jg',
-        'HOST': 'localhost',
-        'PORT': '5432',
+             'ENGINE': 'django.db.backends.postgresql',
+             'NAME': 'techwebsite',
+             'USER': 'postgres',
+             'PASSWORD': '0qLJWEUlU0jg',
+             'HOST': 'localhost',
+             'PORT': '5432',
+         }
 
-    }
 }
 SUMMERNOTE_CONFIG = {
-
-    'attachment_filesize_limit': 2160*1920, # specify the file size
+    # Using SummernoteWidget - iframe mode
+    'iframe': False,  # or set False to use SummernoteInplaceWidget - no iframe mode
+    'attachment_filesize_limit': 2160 * 1920,  # specify the file size
 }
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -124,13 +127,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'

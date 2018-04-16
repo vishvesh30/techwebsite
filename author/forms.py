@@ -18,5 +18,5 @@ class updatearticleForm(forms.ModelForm):
         model=article_data
         fields=['article_text']
         widgets={
-            'article_text':SummernoteWidget()
+            'article_text':SummernoteInplaceWidget()
         }

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block fullblock %}
+    <div class="container-fluid">
+    <div class="jumbotron">
+        <h1 class="h1">Welcome to Techwebsite</h1>
+        <br/>
+
+        <p class="lead">Here You will find guides and tips for various technologies <br/>
+            and our jounery doesn't end here you will also get the news regarding various technologies happening all
+            around the world.
+            <br/>Be sure to check them out ,also you can find list of articles <a href="/article/">Here</a>
+        </p>
+    </div>
+    <br/>
+{% endblock %}
+{% block body %}
+    <hr>
+    <div class="card">
+        <div class="card-header">
+            <h4>Recent Articles</h4>
+
+        </div>
+        {% for obj in article_data %}
+            <div class="card">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <img src="/media/{{ obj.article_image }}" class="img-responsive" height="150px" width="150px">
+                    </div>
+                    <div class="col-lg-9">
+                        <a href="/article/{{ obj.id }}/" class="text-dark">
+                            <div class="card-title"><h2>{{ obj.article_title }}</h2></div>
+                        </a>
+                        <div class="card-group card-body font-weight-light "
+                             style="font-size:large;padding: .75rem 1.25rem">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div class="card-text"><span class="oi oi-person mt-1 mr-1" title="account"
+                                                                     aria-hidden="true"></span> {{ obj.authorid.author_fname }} {{ obj.authorid.author_lname }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div class=" card-text"><span class="oi oi-clock mt-1 mr-1" title="date"
+                                                                      aria-hidden="true"></span> {{ obj.article_date }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                    <div class="container"><a href="/article/{{ obj.id }}/" class="text-dark"><span
+                            class="oi oi-chevron-right"> </span> Read More </a></div>
+                </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+            <br/>
+        {% endfor %}
+    </div>
+    </div>
+{% endblock %}

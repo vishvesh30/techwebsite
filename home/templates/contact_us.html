@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block body %}
+    <h1> Contact Us</h1>
+    <form id="contact_form" name="contact_form" method="post" action="/home/contact_us/" role="form">
+                {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="form_name">Firstname </label>
+                                    <input id="form_name" type="text" name="form_name" class="form-control"
+                                           required="required"
+                                           >
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="form_lastname">Lastname </label>
+                                    <input id="form_lastname" type="text" name="form_lastname" class="form-control"
+                                            required="required"
+                                           >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="form_email">Email </label>
+                                    <input id="form_email" type="email" name="form_email" class="form-control"
+                                           required="required"
+                                           >
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="form_message">Message </label>
+                                <textarea id="form_message" name="form_message" class="form-control"
+                                          rows="4" required="required"
+                                          ></textarea>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="submit" class="btn btn-success"
+                                       value="Send message">
+                            </div>
+                        </div>
+
+                </form>
+{% endblock %}
